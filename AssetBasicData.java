@@ -5,27 +5,15 @@ import java.util.Date;
 public class AssetBasicData {
     private Long id;
 
-    private String lall;
+    private String assetStatus;
 
-    private String ladd;
+    private String assetSource;
 
-    private String lreturn;
+    private String assetOther;
 
-    private String luse;
+    private Long companyId;
 
-    private String free;
-
-    private String buy;
-
-    private String lease;
-
-    private String receiveUse;
-
-    private String borrow;
-
-    private String companyId;
-
-    private String rootCompanyId;
+    private Long rootCompanyId;
 
     private Date date;
 
@@ -43,92 +31,44 @@ public class AssetBasicData {
         this.id = id;
     }
 
-    public String getLall() {
-        return lall;
+    public String getAssetStatus() {
+        return assetStatus;
     }
 
-    public void setLall(String lall) {
-        this.lall = lall == null ? null : lall.trim();
+    public void setAssetStatus(String assetStatus) {
+        this.assetStatus = assetStatus == null ? null : assetStatus.trim();
     }
 
-    public String getLadd() {
-        return ladd;
+    public String getAssetSource() {
+        return assetSource;
     }
 
-    public void setLadd(String ladd) {
-        this.ladd = ladd == null ? null : ladd.trim();
+    public void setAssetSource(String assetSource) {
+        this.assetSource = assetSource == null ? null : assetSource.trim();
     }
 
-    public String getLreturn() {
-        return lreturn;
+    public String getAssetOther() {
+        return assetOther;
     }
 
-    public void setLreturn(String lreturn) {
-        this.lreturn = lreturn == null ? null : lreturn.trim();
+    public void setAssetOther(String assetOther) {
+        this.assetOther = assetOther == null ? null : assetOther.trim();
     }
 
-    public String getLuse() {
-        return luse;
-    }
-
-    public void setLuse(String luse) {
-        this.luse = luse == null ? null : luse.trim();
-    }
-
-    public String getFree() {
-        return free;
-    }
-
-    public void setFree(String free) {
-        this.free = free == null ? null : free.trim();
-    }
-
-    public String getBuy() {
-        return buy;
-    }
-
-    public void setBuy(String buy) {
-        this.buy = buy == null ? null : buy.trim();
-    }
-
-    public String getLease() {
-        return lease;
-    }
-
-    public void setLease(String lease) {
-        this.lease = lease == null ? null : lease.trim();
-    }
-
-    public String getReceiveUse() {
-        return receiveUse;
-    }
-
-    public void setReceiveUse(String receiveUse) {
-        this.receiveUse = receiveUse == null ? null : receiveUse.trim();
-    }
-
-    public String getBorrow() {
-        return borrow;
-    }
-
-    public void setBorrow(String borrow) {
-        this.borrow = borrow == null ? null : borrow.trim();
-    }
-
-    public String getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId == null ? null : companyId.trim();
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
-    public String getRootCompanyId() {
+    public Long getRootCompanyId() {
         return rootCompanyId;
     }
 
-    public void setRootCompanyId(String rootCompanyId) {
-        this.rootCompanyId = rootCompanyId == null ? null : rootCompanyId.trim();
+    public void setRootCompanyId(Long rootCompanyId) {
+        this.rootCompanyId = rootCompanyId;
     }
 
     public Date getDate() {

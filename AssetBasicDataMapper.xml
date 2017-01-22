@@ -3,17 +3,11 @@
 <mapper namespace="com.edianzu.cloud.assets.dao.data.basic.AssetBasicDataMapper" >
   <resultMap id="BaseResultMap" type="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="lall" property="lall" jdbcType="VARCHAR" />
-    <result column="ladd" property="ladd" jdbcType="VARCHAR" />
-    <result column="lreturn" property="lreturn" jdbcType="VARCHAR" />
-    <result column="luse" property="luse" jdbcType="VARCHAR" />
-    <result column="free" property="free" jdbcType="VARCHAR" />
-    <result column="buy" property="buy" jdbcType="VARCHAR" />
-    <result column="lease" property="lease" jdbcType="VARCHAR" />
-    <result column="receive_use" property="receiveUse" jdbcType="VARCHAR" />
-    <result column="borrow" property="borrow" jdbcType="VARCHAR" />
-    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
-    <result column="root_company_id" property="rootCompanyId" jdbcType="VARCHAR" />
+    <result column="asset_status" property="assetStatus" jdbcType="VARCHAR" />
+    <result column="asset_source" property="assetSource" jdbcType="VARCHAR" />
+    <result column="asset_other" property="assetOther" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="root_company_id" property="rootCompanyId" jdbcType="BIGINT" />
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="month_begin_hand_end" property="monthBeginHandEnd" jdbcType="INTEGER" />
     <result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
@@ -78,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, lall, ladd, lreturn, luse, free, buy, lease, receive_use, borrow, company_id, 
-    root_company_id, date, month_begin_hand_end, cdate, mdate
+    id, asset_status, asset_source, asset_other, company_id, root_company_id, date, month_begin_hand_end, 
+    cdate, mdate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicDataExample" >
     select
@@ -112,16 +106,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
-    insert into asset_basic_data (id, lall, ladd, 
-      lreturn, luse, free, 
-      buy, lease, receive_use, 
-      borrow, company_id, root_company_id, 
+    insert into asset_basic_data (id, asset_status, asset_source, 
+      asset_other, company_id, root_company_id, 
       date, month_begin_hand_end, cdate, 
       mdate)
-    values (#{id,jdbcType=BIGINT}, #{lall,jdbcType=VARCHAR}, #{ladd,jdbcType=VARCHAR}, 
-      #{lreturn,jdbcType=VARCHAR}, #{luse,jdbcType=VARCHAR}, #{free,jdbcType=VARCHAR}, 
-      #{buy,jdbcType=VARCHAR}, #{lease,jdbcType=VARCHAR}, #{receiveUse,jdbcType=VARCHAR}, 
-      #{borrow,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{rootCompanyId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{assetStatus,jdbcType=VARCHAR}, #{assetSource,jdbcType=VARCHAR}, 
+      #{assetOther,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, #{rootCompanyId,jdbcType=BIGINT}, 
       #{date,jdbcType=TIMESTAMP}, #{monthBeginHandEnd,jdbcType=INTEGER}, #{cdate,jdbcType=TIMESTAMP}, 
       #{mdate,jdbcType=TIMESTAMP})
   </insert>
@@ -131,32 +121,14 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="lall != null" >
-        lall,
+      <if test="assetStatus != null" >
+        asset_status,
       </if>
-      <if test="ladd != null" >
-        ladd,
+      <if test="assetSource != null" >
+        asset_source,
       </if>
-      <if test="lreturn != null" >
-        lreturn,
-      </if>
-      <if test="luse != null" >
-        luse,
-      </if>
-      <if test="free != null" >
-        free,
-      </if>
-      <if test="buy != null" >
-        buy,
-      </if>
-      <if test="lease != null" >
-        lease,
-      </if>
-      <if test="receiveUse != null" >
-        receive_use,
-      </if>
-      <if test="borrow != null" >
-        borrow,
+      <if test="assetOther != null" >
+        asset_other,
       </if>
       <if test="companyId != null" >
         company_id,
@@ -181,38 +153,20 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="lall != null" >
-        #{lall,jdbcType=VARCHAR},
+      <if test="assetStatus != null" >
+        #{assetStatus,jdbcType=VARCHAR},
       </if>
-      <if test="ladd != null" >
-        #{ladd,jdbcType=VARCHAR},
+      <if test="assetSource != null" >
+        #{assetSource,jdbcType=VARCHAR},
       </if>
-      <if test="lreturn != null" >
-        #{lreturn,jdbcType=VARCHAR},
-      </if>
-      <if test="luse != null" >
-        #{luse,jdbcType=VARCHAR},
-      </if>
-      <if test="free != null" >
-        #{free,jdbcType=VARCHAR},
-      </if>
-      <if test="buy != null" >
-        #{buy,jdbcType=VARCHAR},
-      </if>
-      <if test="lease != null" >
-        #{lease,jdbcType=VARCHAR},
-      </if>
-      <if test="receiveUse != null" >
-        #{receiveUse,jdbcType=VARCHAR},
-      </if>
-      <if test="borrow != null" >
-        #{borrow,jdbcType=VARCHAR},
+      <if test="assetOther != null" >
+        #{assetOther,jdbcType=VARCHAR},
       </if>
       <if test="companyId != null" >
-        #{companyId,jdbcType=VARCHAR},
+        #{companyId,jdbcType=BIGINT},
       </if>
       <if test="rootCompanyId != null" >
-        #{rootCompanyId,jdbcType=VARCHAR},
+        #{rootCompanyId,jdbcType=BIGINT},
       </if>
       <if test="date != null" >
         #{date,jdbcType=TIMESTAMP},
@@ -240,38 +194,20 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.lall != null" >
-        lall = #{record.lall,jdbcType=VARCHAR},
+      <if test="record.assetStatus != null" >
+        asset_status = #{record.assetStatus,jdbcType=VARCHAR},
       </if>
-      <if test="record.ladd != null" >
-        ladd = #{record.ladd,jdbcType=VARCHAR},
+      <if test="record.assetSource != null" >
+        asset_source = #{record.assetSource,jdbcType=VARCHAR},
       </if>
-      <if test="record.lreturn != null" >
-        lreturn = #{record.lreturn,jdbcType=VARCHAR},
-      </if>
-      <if test="record.luse != null" >
-        luse = #{record.luse,jdbcType=VARCHAR},
-      </if>
-      <if test="record.free != null" >
-        free = #{record.free,jdbcType=VARCHAR},
-      </if>
-      <if test="record.buy != null" >
-        buy = #{record.buy,jdbcType=VARCHAR},
-      </if>
-      <if test="record.lease != null" >
-        lease = #{record.lease,jdbcType=VARCHAR},
-      </if>
-      <if test="record.receiveUse != null" >
-        receive_use = #{record.receiveUse,jdbcType=VARCHAR},
-      </if>
-      <if test="record.borrow != null" >
-        borrow = #{record.borrow,jdbcType=VARCHAR},
+      <if test="record.assetOther != null" >
+        asset_other = #{record.assetOther,jdbcType=VARCHAR},
       </if>
       <if test="record.companyId != null" >
-        company_id = #{record.companyId,jdbcType=VARCHAR},
+        company_id = #{record.companyId,jdbcType=BIGINT},
       </if>
       <if test="record.rootCompanyId != null" >
-        root_company_id = #{record.rootCompanyId,jdbcType=VARCHAR},
+        root_company_id = #{record.rootCompanyId,jdbcType=BIGINT},
       </if>
       <if test="record.date != null" >
         date = #{record.date,jdbcType=TIMESTAMP},
@@ -293,17 +229,11 @@
   <update id="updateByExample" parameterType="map" >
     update asset_basic_data
     set id = #{record.id,jdbcType=BIGINT},
-      lall = #{record.lall,jdbcType=VARCHAR},
-      ladd = #{record.ladd,jdbcType=VARCHAR},
-      lreturn = #{record.lreturn,jdbcType=VARCHAR},
-      luse = #{record.luse,jdbcType=VARCHAR},
-      free = #{record.free,jdbcType=VARCHAR},
-      buy = #{record.buy,jdbcType=VARCHAR},
-      lease = #{record.lease,jdbcType=VARCHAR},
-      receive_use = #{record.receiveUse,jdbcType=VARCHAR},
-      borrow = #{record.borrow,jdbcType=VARCHAR},
-      company_id = #{record.companyId,jdbcType=VARCHAR},
-      root_company_id = #{record.rootCompanyId,jdbcType=VARCHAR},
+      asset_status = #{record.assetStatus,jdbcType=VARCHAR},
+      asset_source = #{record.assetSource,jdbcType=VARCHAR},
+      asset_other = #{record.assetOther,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=BIGINT},
+      root_company_id = #{record.rootCompanyId,jdbcType=BIGINT},
       date = #{record.date,jdbcType=TIMESTAMP},
       month_begin_hand_end = #{record.monthBeginHandEnd,jdbcType=INTEGER},
       cdate = #{record.cdate,jdbcType=TIMESTAMP},
@@ -315,38 +245,20 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
     update asset_basic_data
     <set >
-      <if test="lall != null" >
-        lall = #{lall,jdbcType=VARCHAR},
+      <if test="assetStatus != null" >
+        asset_status = #{assetStatus,jdbcType=VARCHAR},
       </if>
-      <if test="ladd != null" >
-        ladd = #{ladd,jdbcType=VARCHAR},
+      <if test="assetSource != null" >
+        asset_source = #{assetSource,jdbcType=VARCHAR},
       </if>
-      <if test="lreturn != null" >
-        lreturn = #{lreturn,jdbcType=VARCHAR},
-      </if>
-      <if test="luse != null" >
-        luse = #{luse,jdbcType=VARCHAR},
-      </if>
-      <if test="free != null" >
-        free = #{free,jdbcType=VARCHAR},
-      </if>
-      <if test="buy != null" >
-        buy = #{buy,jdbcType=VARCHAR},
-      </if>
-      <if test="lease != null" >
-        lease = #{lease,jdbcType=VARCHAR},
-      </if>
-      <if test="receiveUse != null" >
-        receive_use = #{receiveUse,jdbcType=VARCHAR},
-      </if>
-      <if test="borrow != null" >
-        borrow = #{borrow,jdbcType=VARCHAR},
+      <if test="assetOther != null" >
+        asset_other = #{assetOther,jdbcType=VARCHAR},
       </if>
       <if test="companyId != null" >
-        company_id = #{companyId,jdbcType=VARCHAR},
+        company_id = #{companyId,jdbcType=BIGINT},
       </if>
       <if test="rootCompanyId != null" >
-        root_company_id = #{rootCompanyId,jdbcType=VARCHAR},
+        root_company_id = #{rootCompanyId,jdbcType=BIGINT},
       </if>
       <if test="date != null" >
         date = #{date,jdbcType=TIMESTAMP},
@@ -365,17 +277,11 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
     update asset_basic_data
-    set lall = #{lall,jdbcType=VARCHAR},
-      ladd = #{ladd,jdbcType=VARCHAR},
-      lreturn = #{lreturn,jdbcType=VARCHAR},
-      luse = #{luse,jdbcType=VARCHAR},
-      free = #{free,jdbcType=VARCHAR},
-      buy = #{buy,jdbcType=VARCHAR},
-      lease = #{lease,jdbcType=VARCHAR},
-      receive_use = #{receiveUse,jdbcType=VARCHAR},
-      borrow = #{borrow,jdbcType=VARCHAR},
-      company_id = #{companyId,jdbcType=VARCHAR},
-      root_company_id = #{rootCompanyId,jdbcType=VARCHAR},
+    set asset_status = #{assetStatus,jdbcType=VARCHAR},
+      asset_source = #{assetSource,jdbcType=VARCHAR},
+      asset_other = #{assetOther,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=BIGINT},
+      root_company_id = #{rootCompanyId,jdbcType=BIGINT},
       date = #{date,jdbcType=TIMESTAMP},
       month_begin_hand_end = #{monthBeginHandEnd,jdbcType=INTEGER},
       cdate = #{cdate,jdbcType=TIMESTAMP},
