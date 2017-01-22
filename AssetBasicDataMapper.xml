@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edianzu.cloud.assets.dao.data.basic.AssetBasicDataMapper" >
+  <resultMap id="BaseResultMap" type="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="lall" property="lall" jdbcType="VARCHAR" />
+    <result column="ladd" property="ladd" jdbcType="VARCHAR" />
+    <result column="lreturn" property="lreturn" jdbcType="VARCHAR" />
+    <result column="luse" property="luse" jdbcType="VARCHAR" />
+    <result column="free" property="free" jdbcType="VARCHAR" />
+    <result column="buy" property="buy" jdbcType="VARCHAR" />
+    <result column="lease" property="lease" jdbcType="VARCHAR" />
+    <result column="receive_use" property="receiveUse" jdbcType="VARCHAR" />
+    <result column="borrow" property="borrow" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="root_company_id" property="rootCompanyId" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="month_begin_hand_end" property="monthBeginHandEnd" jdbcType="INTEGER" />
+    <result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
+    <result column="mdate" property="mdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lall, ladd, lreturn, luse, free, buy, lease, receive_use, borrow, company_id, 
+    root_company_id, date, month_begin_hand_end, cdate, mdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from asset_basic_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset_basic_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from asset_basic_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicDataExample" >
+    delete from asset_basic_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
+    insert into asset_basic_data (id, lall, ladd, 
+      lreturn, luse, free, 
+      buy, lease, receive_use, 
+      borrow, company_id, root_company_id, 
+      date, month_begin_hand_end, cdate, 
+      mdate)
+    values (#{id,jdbcType=BIGINT}, #{lall,jdbcType=VARCHAR}, #{ladd,jdbcType=VARCHAR}, 
+      #{lreturn,jdbcType=VARCHAR}, #{luse,jdbcType=VARCHAR}, #{free,jdbcType=VARCHAR}, 
+      #{buy,jdbcType=VARCHAR}, #{lease,jdbcType=VARCHAR}, #{receiveUse,jdbcType=VARCHAR}, 
+      #{borrow,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{rootCompanyId,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{monthBeginHandEnd,jdbcType=INTEGER}, #{cdate,jdbcType=TIMESTAMP}, 
+      #{mdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
+    insert into asset_basic_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lall != null" >
+        lall,
+      </if>
+      <if test="ladd != null" >
+        ladd,
+      </if>
+      <if test="lreturn != null" >
+        lreturn,
+      </if>
+      <if test="luse != null" >
+        luse,
+      </if>
+      <if test="free != null" >
+        free,
+      </if>
+      <if test="buy != null" >
+        buy,
+      </if>
+      <if test="lease != null" >
+        lease,
+      </if>
+      <if test="receiveUse != null" >
+        receive_use,
+      </if>
+      <if test="borrow != null" >
+        borrow,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="rootCompanyId != null" >
+        root_company_id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="monthBeginHandEnd != null" >
+        month_begin_hand_end,
+      </if>
+      <if test="cdate != null" >
+        cdate,
+      </if>
+      <if test="mdate != null" >
+        mdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="lall != null" >
+        #{lall,jdbcType=VARCHAR},
+      </if>
+      <if test="ladd != null" >
+        #{ladd,jdbcType=VARCHAR},
+      </if>
+      <if test="lreturn != null" >
+        #{lreturn,jdbcType=VARCHAR},
+      </if>
+      <if test="luse != null" >
+        #{luse,jdbcType=VARCHAR},
+      </if>
+      <if test="free != null" >
+        #{free,jdbcType=VARCHAR},
+      </if>
+      <if test="buy != null" >
+        #{buy,jdbcType=VARCHAR},
+      </if>
+      <if test="lease != null" >
+        #{lease,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUse != null" >
+        #{receiveUse,jdbcType=VARCHAR},
+      </if>
+      <if test="borrow != null" >
+        #{borrow,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="rootCompanyId != null" >
+        #{rootCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthBeginHandEnd != null" >
+        #{monthBeginHandEnd,jdbcType=INTEGER},
+      </if>
+      <if test="cdate != null" >
+        #{cdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mdate != null" >
+        #{mdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicDataExample" resultType="java.lang.Integer" >
+    select count(*) from asset_basic_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update asset_basic_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.lall != null" >
+        lall = #{record.lall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ladd != null" >
+        ladd = #{record.ladd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lreturn != null" >
+        lreturn = #{record.lreturn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.luse != null" >
+        luse = #{record.luse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.free != null" >
+        free = #{record.free,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buy != null" >
+        buy = #{record.buy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lease != null" >
+        lease = #{record.lease,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveUse != null" >
+        receive_use = #{record.receiveUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borrow != null" >
+        borrow = #{record.borrow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rootCompanyId != null" >
+        root_company_id = #{record.rootCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.monthBeginHandEnd != null" >
+        month_begin_hand_end = #{record.monthBeginHandEnd,jdbcType=INTEGER},
+      </if>
+      <if test="record.cdate != null" >
+        cdate = #{record.cdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mdate != null" >
+        mdate = #{record.mdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update asset_basic_data
+    set id = #{record.id,jdbcType=BIGINT},
+      lall = #{record.lall,jdbcType=VARCHAR},
+      ladd = #{record.ladd,jdbcType=VARCHAR},
+      lreturn = #{record.lreturn,jdbcType=VARCHAR},
+      luse = #{record.luse,jdbcType=VARCHAR},
+      free = #{record.free,jdbcType=VARCHAR},
+      buy = #{record.buy,jdbcType=VARCHAR},
+      lease = #{record.lease,jdbcType=VARCHAR},
+      receive_use = #{record.receiveUse,jdbcType=VARCHAR},
+      borrow = #{record.borrow,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      root_company_id = #{record.rootCompanyId,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=TIMESTAMP},
+      month_begin_hand_end = #{record.monthBeginHandEnd,jdbcType=INTEGER},
+      cdate = #{record.cdate,jdbcType=TIMESTAMP},
+      mdate = #{record.mdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
+    update asset_basic_data
+    <set >
+      <if test="lall != null" >
+        lall = #{lall,jdbcType=VARCHAR},
+      </if>
+      <if test="ladd != null" >
+        ladd = #{ladd,jdbcType=VARCHAR},
+      </if>
+      <if test="lreturn != null" >
+        lreturn = #{lreturn,jdbcType=VARCHAR},
+      </if>
+      <if test="luse != null" >
+        luse = #{luse,jdbcType=VARCHAR},
+      </if>
+      <if test="free != null" >
+        free = #{free,jdbcType=VARCHAR},
+      </if>
+      <if test="buy != null" >
+        buy = #{buy,jdbcType=VARCHAR},
+      </if>
+      <if test="lease != null" >
+        lease = #{lease,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUse != null" >
+        receive_use = #{receiveUse,jdbcType=VARCHAR},
+      </if>
+      <if test="borrow != null" >
+        borrow = #{borrow,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="rootCompanyId != null" >
+        root_company_id = #{rootCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthBeginHandEnd != null" >
+        month_begin_hand_end = #{monthBeginHandEnd,jdbcType=INTEGER},
+      </if>
+      <if test="cdate != null" >
+        cdate = #{cdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mdate != null" >
+        mdate = #{mdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edianzu.cloud.assets.model.data.basic.AssetBasicData" >
+    update asset_basic_data
+    set lall = #{lall,jdbcType=VARCHAR},
+      ladd = #{ladd,jdbcType=VARCHAR},
+      lreturn = #{lreturn,jdbcType=VARCHAR},
+      luse = #{luse,jdbcType=VARCHAR},
+      free = #{free,jdbcType=VARCHAR},
+      buy = #{buy,jdbcType=VARCHAR},
+      lease = #{lease,jdbcType=VARCHAR},
+      receive_use = #{receiveUse,jdbcType=VARCHAR},
+      borrow = #{borrow,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      root_company_id = #{rootCompanyId,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      month_begin_hand_end = #{monthBeginHandEnd,jdbcType=INTEGER},
+      cdate = #{cdate,jdbcType=TIMESTAMP},
+      mdate = #{mdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
